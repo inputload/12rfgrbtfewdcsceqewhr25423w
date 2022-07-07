@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    {% if request.user.is_authenticated %}
+        <p>Привет, {{ request.user.username }}</p>
+        <a href="/logout">Выйти</a>
+    {% else %}
+        <p>Привет</p>
+        <a href="/login">Войти</a>
+        <a href="/register">Зарегистрироваться</a>
+    {% endif %}
+
+    <H1>--------------------------------------------------------</H1>
+
+    {% if url %}
+        <H1>{{ url }}</H1>
+    {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="url">
+        <button type="submit">Shortify</button>
+    </form>
+
+{% endblock %}
